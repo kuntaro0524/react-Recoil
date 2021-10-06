@@ -1,2 +1,2 @@
-# react-Recoil
+# React
 Created with CodeSandbox
