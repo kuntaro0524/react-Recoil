@@ -1,4 +1,7 @@
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { userState } from "../../store/userState";
+import { SecondaryButton } from "../atoms/button/SecondaryButton";
 import { SearchInput } from "../molecules/SearchInput";
 import { UserCard } from "../organisms/UserCard";
 
@@ -17,10 +20,16 @@ const users = [...Array(10).keys()].map((val) => {
 });
 
 export const Users = () => {
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+
+  const onClickSwitch = () => setUserInfo({ isAdmin: !userInfo.isAdmin });
+
   return (
     <SContainer>
       <h2> ユーザのページですよ </h2>
       <SearchInput />
+      <br />
+      <SecondaryButton onClick={onClickSwitch}> Switch! </SecondaryButton>
       <SUserArea>
         {users.map((user) => (
           <UserCard key={user.name} user={user} />
